@@ -1,2 +1,2 @@
 # forkify
-Recipe searching app using a Food API
+Recipe searching app using the Food2Fork API

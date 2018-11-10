@@ -1,4 +1,5 @@
 import Search from "./models/Search.js";
+import Recipe from "./models/Recipe.js";
 import * as searchView from "./views/searchView.js";
 import { elements, renderLoader, clearLoader } from "./views/base.js";
 
@@ -10,6 +11,8 @@ import { elements, renderLoader, clearLoader } from "./views/base.js";
 */
 
 const state = {};
+
+// ***** SEARCH CONTROLLER ***** //
 
 const controlSearch = async () => {
     // 1) Get query form view
@@ -46,6 +49,10 @@ elements.searchResPages.addEventListener("click", e => {
     }
 });
 
+// ***** RECIPE CONTROLLER ***** //
+
+const r = new Recipe()
+r.getRecipe();
 
 
 // first API key: 1a832fb5a8d7dec043f06e57acc5ca13

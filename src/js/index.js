@@ -1,5 +1,6 @@
 import Search from "./models/Search.js";
 import Recipe from "./models/Recipe.js";
+import List from "./models/List.js";
 import * as searchView from "./views/searchView.js";
 import * as recipeView from "./views/recipeView.js";
 import { elements, renderLoader, clearLoader } from "./views/base.js";

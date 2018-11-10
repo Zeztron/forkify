@@ -135,6 +135,10 @@ body {
   font-size: 1.2rem;
   margin-top: auto; }
 
+.ion-md-heart {
+    color: #F48982;
+}
+
 .link:link,
 .link:visited {
   color: #968B87; }

@@ -12,7 +12,7 @@ import { elements, renderLoader, clearLoader } from "./views/base.js";
 
 const state = {};
 
-// ***** SEARCH CONTROLLER ***** //
+// ***** S E A R C H  C O N T R O L L E R ***** //
 
 const controlSearch = async () => {
     // 1) Get query form view
@@ -20,16 +20,13 @@ const controlSearch = async () => {
     if (query) {
         // 2) new search object and add to state
         state.search = new Search(query);
-
         // 3) Prepare UI for results
         searchView.clearInput();
         searchView.clearResults();
         renderLoader(elements.searchRes);
-
         try {
             // 4) Search for recipes
             await state.search.getResults();
-
             // 5) render results on UI
             clearLoader();
             searchView.renderResults(state.search.result);
@@ -39,12 +36,10 @@ const controlSearch = async () => {
         }
     }
 }
-
 elements.searchForm.addEventListener("submit", e => {
     e.preventDefault();
     controlSearch();
 });
-
 elements.searchResPages.addEventListener("click", e => {
     const btn = e.target.closest(".btn-inline");
     if (btn) {
@@ -53,8 +48,9 @@ elements.searchResPages.addEventListener("click", e => {
         searchView.renderResults(state.search.result, goToPage);
     }
 });
+// ********************************************************** //
 
-// ***** RECIPE CONTROLLER ***** //
+// ***** R E C I P E   C O N T R O L L E R ***** //
 
 const controlRecipe = async () => {
     // Get ID from the URL
@@ -66,8 +62,9 @@ const controlRecipe = async () => {
         // Create a new recipe Object
         state.recipe = new Recipe(id);
         try {
-            // Get recipe data
+            // Get recipe data and parse ingredients
             await state.recipe.getRecipe();
+            state.recipe.parseIngredients();
 
             // Calculate servings and time
             state.recipe.calcTime();
@@ -83,14 +80,3 @@ const controlRecipe = async () => {
 };
 
 ["hashchange", "load"].forEach(event => window.addEventListener(event, controlRecipe));
-
-
-
-
-
-// first API key: 1a832fb5a8d7dec043f06e57acc5ca13
-// Second API key: 9062950ff6364dd28553e8900f0c2a31
-// Third API key: c23cf38b29d6b2503e6e1de60bd0044d
-// Fourth API key: b58927e43a9759e8364a7373dcec2a72
-// Search: https://www.food2fork.com/api/search
-// Recipe: https://www.food2fork.com/api/get
